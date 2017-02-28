@@ -297,7 +297,7 @@ definitions:
   CoffeeResponse:
     type: object
     properties:
-      schedule:
+      coffee:
         type: array
         items:
           $ref: '#/definitions/CoffeeItem'
@@ -323,7 +323,7 @@ definitions:
   OrderResponse:
     type: object
     properties:
-      schedule:
+      order:
         type: array
         items:
           $ref: '#/definitions/Order'
