@@ -54,7 +54,7 @@ paths:
        200:
          description: "Successful Response"
          schema:
-           $ref: '#/definitions/CoffeeItem'
+           $ref: '#/definitions/CoffeeResponse'
        500:
         description: Server Error
  "/coffee/{name}":
@@ -76,7 +76,7 @@ paths:
        200:
          description: "Successful Response"
          schema:
-           $ref: '#/definitions/CoffeeItem'
+           $ref: '#/definitions/CoffeeResponse'
        500:
         description: Server Error
  "/coffee/{location}":
@@ -98,7 +98,7 @@ paths:
       200:
         description: "Successful Response"
         schema:
-          $ref: '#/definitions/CoffeeItem'
+          $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
  "/coffee/{caffieneUnder}":
@@ -120,7 +120,7 @@ paths:
       200:
         description: "Successful Response"
         schema:
-          $ref: '#/definitions/CoffeeItem'
+          $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
  "/coffee/{caffieneOver}":
@@ -165,7 +165,7 @@ paths:
       200:
         description: Successful Response
         schema:
-          $ref: '#/definitions/SuccessResponse'
+          $ref: '#/definitions/CoffeeResponse'
       500:
         description: Server Error
         schema:
@@ -246,26 +246,28 @@ paths:
              $ref: '#/definitions/OrderResponse'
        500:
          description: Server Error
- "/orders/{id}":
+ /orders/{id}:
   get:
     tags:
-      - "Orders"
-    description: "List an order based by its ID"
+      - Orders
+    description: "Get an order based by its ID"
     operationId: "getOrder"
     produces:
-      - "text"
+      - "application/json"
     parameters:
       -
-        name: "id"
-        in: "query"
-        description: "List an order based by its ID"
+        name: id
+        in: query
+        description: Get an order based by its ID
         required: false
-        type: "string"
+        type: number
     responses:
       200:
-        description: "aqi response"
-      default:
-        description: "unexpected error"
+        description: "Successful Response"
+        schema:
+            $ref: '#/definitions/OrderResponse'
+      500:
+        description: Server Error
  "/orders/{name}":
   get:
     tags:
