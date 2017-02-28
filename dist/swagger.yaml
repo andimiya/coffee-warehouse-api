@@ -306,6 +306,23 @@ definitions:
         type: string
       caffeieneLevel:
         type: number
+  Order:
+    type: object
+    properties:
+      orderStatus:
+        type: string
+  OrderUpdateRequest:
+    type: object
+    properties:
+      orderStatus:
+        type: string
+  OrderResponse:
+    type: object
+    properties:
+      schedule:
+        type: array
+        items:
+          $ref: '#/definitions/Order'
   CoffeeItemUpdateRequest:
     type: object
     properties:
