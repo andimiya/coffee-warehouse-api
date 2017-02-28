@@ -31,7 +31,7 @@ paths:
        200:
          description: "Successful Response"
          schema:
-             $ref: '#/definitions/CoffeeItem'
+             $ref: '#/definitions/CoffeeResponse'
        500:
          description: Server Error
 
@@ -234,16 +234,18 @@ paths:
  "/orders":
    get:
      tags:
-       - "Orders"
-     description: "gets all the orders"
-     operationId: "getAllOrders"
+       - "Coffee"
+     description: "Gets all the orders"
+     operationId: "getAllCoffee"
      produces:
-       - "text"
+       - "application/json"
      responses:
        200:
-         description: "aqi response"
-       default:
-         description: "unexpected error"
+         description: "Successful Response"
+         schema:
+             $ref: '#/definitions/OrderResponse'
+       500:
+         description: Server Error
  "/orders/{id}":
   get:
     tags:
