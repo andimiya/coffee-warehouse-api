@@ -23,36 +23,40 @@ paths:
    get:
      tags:
        - "Coffee"
-     description: "gets all the coffees"
+     description: "Gets all the coffees in the warehouse"
      operationId: "getAllCoffee"
      produces:
-       - "text"
+       - "application/json"
      responses:
        200:
-         description: "aqi response"
-       default:
-         description: "unexpected error"
+         description: "Successful Response"
+         schema:
+             $ref: '#/definitions/CoffeeItem'
+       500:
+         description: Server Error
 
  "/coffee/{id}":
    get:
      tags:
        - "Coffee"
-     description: "gets coffee by ID"
+     description: "Gets coffee by ID"
      operationId: "getCoffeeId"
      produces:
-       - "text"
+       - "application/json"
      parameters:
        -
          name: "id"
          in: "query"
          description: "Coffee by ID"
          required: false
-         type: "string"
+         type: "number"
      responses:
        200:
-         description: "aqi response"
-       default:
-         description: "unexpected error"
+         description: "Successful Response"
+         schema:
+           $ref: '#/definitions/CoffeeItem'
+       500:
+        description: Server Error
  "/coffee/{name}":
    get:
      tags:
@@ -60,7 +64,7 @@ paths:
      description: "query will need to get coffee by name"
      operationId: "getCoffeeName"
      produces:
-       - "text"
+       - "application/json"
      parameters:
        -
          name: "name"
@@ -70,9 +74,11 @@ paths:
          type: "string"
      responses:
        200:
-         description: "aqi response"
-       default:
-         description: "unexpected error"
+         description: "Successful Response"
+         schema:
+           $ref: '#/definitions/CoffeeItem'
+       500:
+        description: Server Error
  "/coffee/{location}":
   get:
     tags:
@@ -80,7 +86,7 @@ paths:
     description: "query will need to get coffee by location"
     operationId: "getCoffeeLocation"
     produces:
-      - "text"
+      - "application/json"
     parameters:
       -
         name: "location"
@@ -90,9 +96,11 @@ paths:
         type: "string"
     responses:
       200:
-        description: "aqi response"
-      default:
-        description: "unexpected error"
+        description: "Successful Response"
+        schema:
+          $ref: '#/definitions/CoffeeItem'
+      500:
+       description: Server Error
  "/coffee/{caffieneUnder}":
   get:
     tags:
@@ -100,19 +108,21 @@ paths:
     description: "Find coffees with a caffeine level below X"
     operationId: "getCaffeieneUnder"
     produces:
-      - "text"
+      - "application/json"
     parameters:
       -
         name: "caffieneUnder"
         in: "query"
         description: "Coffee by with a caffeiene level below X"
         required: false
-        type: "string"
+        type: "number"
     responses:
       200:
-        description: "aqi response"
-      default:
-        description: "unexpected error"
+        description: "Successful Response"
+        schema:
+          $ref: '#/definitions/CoffeeItem'
+      500:
+       description: Server Error
  "/coffee/{caffieneOver}":
   get:
     tags:
@@ -120,19 +130,21 @@ paths:
     description: "Find coffees with a caffeine level above X"
     operationId: "getCaffeieneOver"
     produces:
-      - "text"
+      - "application/json"
     parameters:
       -
         name: "lowCaffeiene"
         in: "query"
         description: "Find coffees with a caffeine level above X"
         required: false
-        type: "string"
+        type: "number"
     responses:
       200:
-        description: "aqi response"
-      default:
-        description: "unexpected error"
+        description: "Successful Response"
+        schema:
+          $ref: '#/definitions/CoffeeItem'
+      500:
+       description: Server Error
  "/coffee/{newCoffee}":
   post:
     tags:
@@ -140,7 +152,7 @@ paths:
     description: "Add a new coffee to the warehouse"
     operationId: "postCoffee"
     produces:
-      - "text"
+      - "application/json"
     parameters:
       -
         name: "newCoffee"
@@ -226,7 +238,7 @@ paths:
         description: "aqi response"
       default:
         description: "unexpected error"
- "/orders/{id}":
+ "/orders/{name}":
   get:
     tags:
       - "Orders"
@@ -236,7 +248,7 @@ paths:
       - "text"
     parameters:
       -
-        name: "id"
+        name: "name"
         in: "query"
         description: "List an order based by its ID"
         required: false
@@ -251,3 +263,13 @@ securityDefinitions:
     type: apiKey
     in: header
     name: X-Mashape-Key
+definitions:
+  CoffeeItem:
+    type: object
+    properties:
+      name:
+        type: string
+      location:
+        type: string
+      caffeieneLevel:
+        type: number
