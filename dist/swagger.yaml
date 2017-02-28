@@ -73,7 +73,179 @@ paths:
          description: "aqi response"
        default:
          description: "unexpected error"
-
+ "/coffee/{location}":
+  get:
+    tags:
+      - "Coffee"
+    description: "query will need to get coffee by location"
+    operationId: "getCoffeeLocation"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "location"
+        in: "query"
+        description: "Coffee by Location"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/coffee/{caffieneUnder}":
+  get:
+    tags:
+      - "Coffee"
+    description: "Find coffees with a caffeine level below X"
+    operationId: "getCaffeieneUnder"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "caffieneUnder"
+        in: "query"
+        description: "Coffee by with a caffeiene level below X"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/coffee/{caffieneOver}":
+  get:
+    tags:
+      - "Coffee"
+    description: "Find coffees with a caffeine level above X"
+    operationId: "getCaffeieneOver"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "lowCaffeiene"
+        in: "query"
+        description: "Find coffees with a caffeine level above X"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/coffee/{newCoffee}":
+  post:
+    tags:
+      - "Coffee"
+    description: "Add a new coffee to the warehouse"
+    operationId: "postCoffee"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "newCoffee"
+        in: "query"
+        description: "Allow authorized users to post new coffees to the warehouse"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/coffee/{updateCoffee}":
+  put:
+    tags:
+      - "Coffee"
+    description: "Edit coffee information"
+    operationId: "updateCoffee"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "updateCoffee"
+        in: "query"
+        description: "Allow authorized users to alter coffee information"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/coffee/{deleteCoffee}":
+  delete:
+    tags:
+      - "Coffee"
+    description: "Remove a coffee from the warehouse"
+    operationId: "deleteCoffee"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "deleteCoffee"
+        in: "query"
+        description: "Allow authorized users to remove coffees from the warehouse"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/orders":
+   get:
+     tags:
+       - "Orders"
+     description: "gets all the orders"
+     operationId: "getAllOrders"
+     produces:
+       - "text"
+     responses:
+       200:
+         description: "aqi response"
+       default:
+         description: "unexpected error"
+ "/orders/{id}":
+  get:
+    tags:
+      - "Orders"
+    description: "List an order based by its ID"
+    operationId: "getOrder"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "id"
+        in: "query"
+        description: "List an order based by its ID"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
+ "/orders/{id}":
+  get:
+    tags:
+      - "Orders"
+    description: "List an order based by its ID"
+    operationId: "getOrder"
+    produces:
+      - "text"
+    parameters:
+      -
+        name: "id"
+        in: "query"
+        description: "List an order based by its ID"
+        required: false
+        type: "string"
+    responses:
+      200:
+        description: "aqi response"
+      default:
+        description: "unexpected error"
 securityDefinitions:
   internalApiKey:
     type: apiKey
