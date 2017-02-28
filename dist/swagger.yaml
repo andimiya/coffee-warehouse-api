@@ -213,17 +213,24 @@ paths:
     produces:
       - "text"
     parameters:
-      -
-        name: "deleteCoffee"
-        in: "query"
-        description: "Allow authorized users to remove coffees from the warehouse"
-        required: false
-        type: "string"
+      - name: id
+        in: path
+        description: Allow authorized users to remove coffees from the warehouse
+        required: true
+        type: number
     responses:
       200:
-        description: "aqi response"
+        description: Successfully Deleted
+      404:
+        description: Not Found
+      500:
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
       default:
-        description: "unexpected error"
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
  "/orders":
    get:
      tags:
