@@ -142,29 +142,38 @@ paths:
       200:
         description: "Successful Response"
         schema:
-          $ref: '#/definitions/CoffeeItem'
+          $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
  "/coffee/{newCoffee}":
   post:
     tags:
-      - "Coffee"
-    description: "Add a new coffee to the warehouse"
-    operationId: "postCoffee"
+      - Coffee
+    description: Add a new coffee to the warehouse
+    operationId: postCoffee
     produces:
       - "application/json"
     parameters:
       -
-        name: "newCoffee"
-        in: "query"
-        description: "Allow authorized users to post new coffees to the warehouse"
-        required: false
-        type: "string"
+        in: body
+        name: body
+        description: Allow authorized users to post new coffees to the warehouse
+        required: true
+        schema:
+          $ref: '#/definitions/CoffeeItem'
     responses:
       200:
-        description: "aqi response"
+        description: Successful Response
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+      500:
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
       default:
-        description: "unexpected error"
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
  "/coffee/{updateCoffee}":
   put:
     tags:
@@ -264,6 +273,13 @@ securityDefinitions:
     in: header
     name: X-Mashape-Key
 definitions:
+  CoffeeResponse:
+    type: object
+    properties:
+      schedule:
+        type: array
+        items:
+          $ref: '#/definitions/CoffeeItem'
   CoffeeItem:
     type: object
     properties:
@@ -273,3 +289,30 @@ definitions:
         type: string
       caffeieneLevel:
         type: number
+  CoffeeItemUpdateRequest:
+    type: object
+    properties:
+      name:
+        type: string
+      location:
+        type: string
+      caffeieneLevel:
+        type: number
+  SuccessResponse:
+      title: Success
+      type: object
+      items:
+        title: Message
+        type: object
+      properties:
+        message:
+          type: string
+  ErrorResponse:
+    title: Error
+    type: object
+    items:
+      title: Message
+      type: object
+    properties:
+      message:
+        type: string
