@@ -7,11 +7,11 @@ info:
  contact:
    name: "Andrea Takamiya"
    email: "takamiya.andrea@gmail.com"
-   url: "devleague.com"
- license:
-   name: "MIT"
-   url: "http://opensource.org/licenses/MIT"
-host: "simple-weather.p.mashape.com"
+  #  url: "devleague.com"
+ # license:
+ #   name: "MIT"
+ #   url: "http://opensource.org/licenses/MIT"
+host: "localhost:8080"
 schemes:
  - "https"
 consumes:
@@ -19,34 +19,21 @@ consumes:
 produces:
  - "application/text"
 paths:
- /coffee:
+ "/coffee":
    get:
      tags:
        - "Coffee"
-     description: "gets air quality index"
-     operationId: "getAqi"
+     description: "gets all the coffees"
+     operationId: "getAllCoffee"
      produces:
        - "text"
-     parameters:
-       -
-         name: "lat"
-         in: "query"
-         description: "latitude"
-         required: false
-         type: "string"
-       -
-         name: "lng"
-         in: "query"
-         description: "longitude"
-         required: false
-         type: "string"
      responses:
        200:
          description: "aqi response"
        default:
          description: "unexpected error"
 
- /coffee/{id}:
+ "/coffee/{id}":
    get:
      tags:
        - "Coffee"
@@ -61,63 +48,29 @@ paths:
          description: "Coffee by ID"
          required: false
          type: "string"
-
      responses:
        200:
          description: "aqi response"
        default:
          description: "unexpected error"
-
- /weather:
+ "/coffee/{name}":
    get:
      tags:
-       - "Weather Forecast"
-     description: "gets weather forecast in short label"
-     operationId: "getWeather"
+       - "Coffee"
+     description: "query will need to get coffee by name"
+     operationId: "getCoffeeName"
      produces:
        - "text"
      parameters:
        -
-         name: "lat"
+         name: "name"
          in: "query"
-         description: "latitude"
-         required: false
-         type: "string"
-       -
-         name: "lng"
-         in: "query"
-         description: "longitude"
+         description: "Coffee by Name"
          required: false
          type: "string"
      responses:
        200:
-         description: "weather response"
-       default:
-         description: "unexpected error"
- /weatherdata:
-   get:
-     tags:
-       - "Full Weather Data"
-     description: "Get weather forecast by Latitude and Longitude"
-     operationId: "getWeatherData"
-     produces:
-       - "application/json"
-     parameters:
-       -
-         name: "lat"
-         in: "query"
-         description: "latitude"
-         required: false
-         type: "string"
-       -
-         name: "lng"
-         in: "query"
-         description: "longitude"
-         required: false
-         type: "string"
-     responses:
-       200:
-         description: "weatherdata response"
+         description: "aqi response"
        default:
          description: "unexpected error"
 
