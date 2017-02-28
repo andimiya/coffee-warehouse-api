@@ -174,26 +174,36 @@ paths:
         description: Server Error
         schema:
           $ref: '#/definitions/ErrorResponse'
- "/coffee/{updateCoffee}":
+ /coffee/{updateCoffee}:
   put:
     tags:
-      - "Coffee"
-    description: "Edit coffee information"
-    operationId: "updateCoffee"
+      - Coffee
+    description: Edit coffee information
+    operationId: updateCoffee
     produces:
-      - "text"
+      - application/json
     parameters:
-      -
-        name: "updateCoffee"
-        in: "query"
-        description: "Allow authorized users to alter coffee information"
-        required: false
-        type: "string"
+      - in: body
+        name: body
+        description: Coffee Item
+        required: true
+        schema:
+          $ref: '#/definitions/CoffeeItemUpdateRequest'
     responses:
       200:
-        description: "aqi response"
+        description: Successful Response
+        schema:
+          $ref: '#/definitions/SuccessResponse'
+      404:
+        description: Not Found
+      500:
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
       default:
-        description: "unexpected error"
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
  "/coffee/{deleteCoffee}":
   delete:
     tags:
