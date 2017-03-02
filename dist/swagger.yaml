@@ -57,7 +57,7 @@ paths:
            $ref: '#/definitions/CoffeeResponse'
        500:
         description: Server Error
- "/coffee/{name}":
+ "/coffee/name/{name}":
    get:
      tags:
        - "Coffee"
@@ -79,7 +79,7 @@ paths:
            $ref: '#/definitions/CoffeeResponse'
        500:
         description: Server Error
- "/coffee/{location}":
+ "/coffee/location/{location}":
   get:
     tags:
       - "Coffee"
@@ -101,7 +101,7 @@ paths:
           $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
- "/coffee/{caffieneUnder}":
+ "/coffee/caffieneUnder/{caffieneUnder}":
   get:
     tags:
       - "Coffee"
@@ -123,7 +123,7 @@ paths:
           $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
- "/coffee/{caffieneOver}":
+ "/coffee/caffieneOver/{caffieneOver}":
   get:
     tags:
       - "Coffee"
@@ -145,7 +145,7 @@ paths:
           $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
- "/coffee/{newCoffee}":
+ "/coffee/newCoffee/{newCoffee}":
   post:
     tags:
       - Coffee
