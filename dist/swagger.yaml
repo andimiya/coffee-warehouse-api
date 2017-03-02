@@ -101,7 +101,7 @@ paths:
           $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
- "/coffee/caffieneUnder/{caffieneUnder}":
+ "/coffee/caffiene-under/{caffieneUnder}":
   get:
     tags:
       - "Coffee"
@@ -123,7 +123,7 @@ paths:
           $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
- "/coffee/caffieneOver/{caffieneOver}":
+ "/coffee/caffiene-over/{caffieneOver}":
   get:
     tags:
       - "Coffee"
@@ -145,7 +145,7 @@ paths:
           $ref: '#/definitions/CoffeeResponse'
       500:
        description: Server Error
- "/coffee/newCoffee/{newCoffee}":
+ /coffee/new-coffee:
   post:
     tags:
       - Coffee
@@ -174,7 +174,7 @@ paths:
         description: Server Error
         schema:
           $ref: '#/definitions/ErrorResponse'
- /coffee/{updateCoffee}:
+ /coffee/update-coffee:
   put:
     tags:
       - Coffee
@@ -204,7 +204,7 @@ paths:
         description: Server Error
         schema:
           $ref: '#/definitions/ErrorResponse'
- "/coffee/{deleteCoffee}":
+ /coffee/delete-coffee:
   delete:
     tags:
       - "Coffee"
@@ -231,10 +231,10 @@ paths:
         description: Server Error
         schema:
           $ref: '#/definitions/ErrorResponse'
- "/orders":
+ /orders:
    get:
      tags:
-       - "Coffee"
+       - Orders
      description: "Gets all the orders"
      operationId: "getAllCoffee"
      produces:
@@ -268,7 +268,7 @@ paths:
             $ref: '#/definitions/OrderResponse'
       500:
         description: Server Error
- "/orders/{name}":
+ /orders/name/{name}:
   get:
     tags:
       - "Orders"
