@@ -290,6 +290,8 @@ paths:
            $ref: '#/definitions/OrderResponse'
        500:
          description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
   /orders/new-order:
    post:
      tags:
@@ -300,11 +302,12 @@ paths:
        - application/json
      parameters:
        -
-         name: coffee
-         in: query
-         description: List all orders that contain a certain coffee in the order
-         required: false
-         type: string
+         in: body
+         name: body
+         description: Add a new order to the warehouse
+         required: true
+         schema:
+           $ref: '#/definitions/OrderItem'
      responses:
        200:
          description: "Successful Response"
@@ -312,6 +315,12 @@ paths:
            $ref: '#/definitions/OrderResponse'
        500:
          description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
 securityDefinitions:
   internalApiKey:
     type: apiKey
