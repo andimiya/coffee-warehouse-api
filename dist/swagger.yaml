@@ -351,6 +351,34 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
+ /orders/status/{orderStatus}:
+   get:
+     tags:
+       - Orders
+     description: View orders by order status
+     operationId: getOrderStatus
+     produces:
+       - application/json
+     parameters:
+       -
+         name: orderStatus
+         in: query
+         description: View orders by order status
+         required: true
+         type: string
+     responses:
+       200:
+         description: "Successful Response"
+         schema:
+           $ref: '#/definitions/OrderResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
 securityDefinitions:
   internalApiKey:
     type: apiKey
