@@ -1,39 +1,122 @@
-swagger: 2.0
+swagger: "2.0"
 info:
- version: 1.0.0
- title: Coffee Warehouse API
- description: A Design for a Coffee Warehouse API
- termsOfService: none
- contact:
-   name: Andrea Takamiya
-   email: takamiya.andrea@gmail.com
-  #  url: devleague.com
- # license:
- #   name: MIT
- #   url: http://opensource.org/licenses/MIT
-host: localhost:8080
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
 schemes:
- - http
- - https
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
 consumes:
- - application/json
+  - application/json
+# format of the responses to the client (Accepts)
 produces:
- - application/text
+  - application/json
 paths:
- /coffee:
-   x-swagger-router-controller: coffee_warehouse
+
+  /coffee:
+    x-swagger-router-controller: hello_world
+    get:
+      tags:
+        - Coffee
+      description: Gets all the coffees in the warehouse
+      operationId: getAllCoffee
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          schema:
+              $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  /coffee/{id}/:
+    get:
+      tags:
+        - Coffee
+      description: Gets coffee by ID
+      operationId: getCoffeeId
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Coffee by ID
+          required: true
+          type: number
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/name/{coffeeName}:
+    get:
+      tags:
+        - Coffee
+      description: query will need to get coffee by name
+      operationId: getCoffeeName
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeeName
+          in: path
+          description: Coffee by Name
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/location/{location}:
    get:
      tags:
        - Coffee
-     description: Gets all the coffees in the warehouse
-     operationId: getAllCoffee
+     description: Get all coffees by location
+     operationId: getCoffeeLocation
      produces:
        - application/json
+     parameters:
+       -
+         name: location
+         in: path
+         description: Coffee by Location
+         required: true
+         type: string
      responses:
        200:
          description: Successful Response
          schema:
-             $ref: '#/definitions/CoffeeResponse'
+           $ref: '#/definitions/CoffeeResponse'
        500:
          description: Server Error
          schema:
@@ -42,21 +125,20 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
-
- /coffee/{id}:
+  /coffee/caffiene-under/{caffieneLevel}:
    get:
      tags:
        - Coffee
-     description: Gets coffee by ID
-     operationId: getCoffeeId
+     description: Find coffees with a caffeine level below X
+     operationId: getCaffeieneUnder
      produces:
        - application/json
      parameters:
        -
-         name: id
-         in: query
-         description: Coffee by ID
-         required: false
+         name: caffieneLevel
+         in: path
+         description: Coffee by with a caffeiene level below X
+         required: true
          type: number
      responses:
        200:
@@ -71,21 +153,21 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
- /coffee/name/{coffeeName}:
+  /coffee/caffiene-over/{caffieneLevel}:
    get:
      tags:
        - Coffee
-     description: query will need to get coffee by name
-     operationId: getCoffeeName
+     description: Find coffees with a caffeine level above X
+     operationId: getCaffeieneOver
      produces:
        - application/json
      parameters:
        -
-         name: coffeeName
-         in: query
-         description: Coffee by Name
-         required: false
-         type: string
+         name: caffieneLevel
+         in: path
+         description: Find coffees with a caffeine level above X
+         required: true
+         type: number
      responses:
        200:
          description: Successful Response
@@ -99,281 +181,22 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
- /coffee/location/{locationId}:
-  get:
-    tags:
-      - Coffee
-    description: Get all coffees by location
-    operationId: getCoffeeLocation
-    produces:
-      - application/json
-    parameters:
-      -
-        name: locationId
-        in: query
-        description: Coffee by Location
-        required: false
-        type: string
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          $ref: '#/definitions/CoffeeResponse'
-      500:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
-      default:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
- /coffee/caffiene-under/{caffieneLevel}:
-  get:
-    tags:
-      - Coffee
-    description: Find coffees with a caffeine level below X
-    operationId: getCaffeieneUnder
-    produces:
-      - application/json
-    parameters:
-      -
-        name: caffieneLevel
-        in: query
-        description: Coffee by with a caffeiene level below X
-        required: false
-        type: number
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          $ref: '#/definitions/CoffeeResponse'
-      500:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
-      default:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
- /coffee/caffiene-over/{caffieneLevel}:
-  get:
-    tags:
-      - Coffee
-    description: Find coffees with a caffeine level above X
-    operationId: getCaffeieneOver
-    produces:
-      - application/json
-    parameters:
-      -
-        name: caffieneLevel
-        in: query
-        description: Find coffees with a caffeine level above X
-        required: false
-        type: number
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          $ref: '#/definitions/CoffeeResponse'
-      500:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
-      default:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
- /coffee/new-coffee:
-  post:
-    tags:
-      - Coffee
-    description: Add a new coffee to the warehouse
-    operationId: postNewCoffee
-    produces:
-      - application/json
-    parameters:
-      -
-        in: body
-        name: body
-        description: Allow authorized users to post new coffees to the warehouse
-        required: true
-        schema:
-          $ref: '#/definitions/Coffee'
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          $ref: '#/definitions/SuccessResponse'
-      500:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
-      default:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
- /coffee/update-coffee/{id}:
-  put:
-    tags:
-      - Coffee
-    description: Edit coffee information
-    operationId: updateCoffee
-    produces:
-      - application/json
-    parameters:
-      - in: body
-        name: body
-        description: Coffee Item
-        required: true
-        schema:
-          $ref: '#/definitions/CoffeeUpdateRequest'
-    responses:
-      200:
-        description: Successful Response
-        schema:
-          $ref: '#/definitions/SuccessResponse'
-      404:
-        description: Not Found
-      500:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
-      default:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
- /coffee/delete-coffee/{id}:
-  delete:
-    tags:
-      - Coffee
-    description: Remove a coffee from the warehouse
-    operationId: deleteCoffee
-    produces:
-      - text
-    parameters:
-      - name: id
-        in: path
-        description: Allow authorized users to remove coffees from the warehouse
-        required: true
-        type: number
-    responses:
-      200:
-        description: Successfully Deleted
-      404:
-        description: Not Found
-      500:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
-      default:
-        description: Server Error
-        schema:
-          $ref: '#/definitions/ErrorResponse'
- /orders:
-   get:
-     tags:
-       - Orders
-     description: Gets all the orders
-     operationId: getAllOrders
-     produces:
-       - application/json
-     responses:
-       200:
-         description: Successful Response
-         schema:
-             $ref: '#/definitions/OrderResponse'
-       500:
-         description: Server Error
- /orders/{id}:
-  get:
-    tags:
-      - Orders
-    description: Get an order based by its ID
-    operationId: getOrderId
-    produces:
-      - application/json
-    parameters:
-      -
-        name: id
-        in: query
-        description: Get an order based by its ID
-        required: false
-        type: number
-    responses:
-      200:
-        description: Successful Response
-        schema:
-            $ref: '#/definitions/SuccessResponse'
-      500:
-        description: Server Error
- /orders/coffee/{coffeeType}:
-   get:
-     tags:
-       - Orders
-     description: List all orders that contain a certain coffee in the order
-     operationId: getOrdersByCoffeeResults
-     produces:
-       - application/json
-     parameters:
-       -
-         name: coffeeType
-         in: query
-         description: List all orders that contain a certain coffee in the order
-         required: false
-         type: string
-     responses:
-       200:
-         description: Successful Response
-         schema:
-           $ref: '#/definitions/OrderResponse'
-       500:
-         description: Server Error
-         schema:
-           $ref: '#/definitions/ErrorResponse'
- /orders/status/{orderStatus}:
-   get:
-     tags:
-       - Orders
-     description: View orders by order status
-     operationId: getOrderStatus
-     produces:
-       - application/json
-     parameters:
-       -
-         name: orderStatus
-         in: query
-         description: View orders by order status
-         required: true
-         type: string
-     responses:
-       200:
-         description: Successful Response
-         schema:
-           $ref: '#/definitions/OrderResponse'
-       500:
-         description: Server Error
-         schema:
-           $ref: '#/definitions/ErrorResponse'
-       default:
-         description: Server Error
-         schema:
-           $ref: '#/definitions/ErrorResponse'
- /orders/new-order:
+  /coffee/new:
    post:
      tags:
-       - Orders
-     description: Add a new order to the warehouse
-     operationId: postNewOrder
+       - Coffee
+     description: Add a new coffee to the warehouse
+     operationId: postNewCoffee
      produces:
        - application/json
      parameters:
        -
          in: body
          name: body
-         description: Add a new order to the warehouse
+         description: Allow authorized users to post new coffees to the warehouse
          required: true
          schema:
-           $ref: '#/definitions/Order'
+           $ref: '#/definitions/Coffee'
      responses:
        200:
          description: Successful Response
@@ -387,28 +210,25 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
-
- /orders/update-order/{id}:
+  /coffee/update/:
    put:
      tags:
-       - Orders
-     description: Edit an Order
-     operationId: editOrder
-     produces:
-       - application/json
+       - Coffee
+     description: Edit coffee information
      parameters:
-       -
-         in: body
+       - in: body
          name: body
-         description: Edit an existing order
+         description: Coffee Item
          required: true
          schema:
-           $ref: '#/definitions/OrderUpdateRequest'
+           $ref: '#/definitions/CoffeeUpdateRequest'
      responses:
        200:
          description: Successful Response
          schema:
-           $ref: '#/definitions/OrderResponse'
+           $ref: '#/definitions/SuccessResponse'
+       404:
+         description: Not Found
        500:
          description: Server Error
          schema:
@@ -417,12 +237,182 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
+  /coffee/delete/{id}:
+   delete:
+     tags:
+       - Coffee
+     description: Remove a coffee from the warehouse
+     operationId: deleteCoffee
+     produces:
+       - text
+     parameters:
+       - name: id
+         in: path
+         description: Allow authorized users to remove coffees from the warehouse
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /orders:
+    get:
+      tags:
+        - Orders
+      description: Gets all the orders
+      operationId: getAllOrders
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          schema:
+              $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+  /orders/{id}:
+   get:
+     tags:
+       - Orders
+     description: Get an order based by its ID
+     operationId: getOrderId
+     produces:
+       - application/json
+     parameters:
+       -
+         name: id
+         in: path
+         description: Get an order based by its ID
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /orders/coffee/{coffeeType}:
+    get:
+      tags:
+        - Orders
+      description: List all orders that contain a certain coffee in the order
+      operationId: getOrdersByCoffeeResults
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeeType
+          in: path
+          description: List all orders that contain a certain coffee in the order
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/status/{orderStatus}:
+    get:
+      tags:
+        - Orders
+      description: View orders by order status
+      operationId: getOrderStatus
+      produces:
+        - application/json
+      parameters:
+        -
+          name: orderStatus
+          in: path
+          description: View orders by order status
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/new:
+    post:
+      tags:
+        - Orders
+      description: Add a new order to the warehouse
+      operationId: postNewOrder
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: Add a new order to the warehouse
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 
-securityDefinitions:
-  internalApiKey:
-    type: apiKey
-    in: header
-    name: X-Mashape-Key
+  /orders/update:
+    put:
+      tags:
+        - Orders
+      description: Edit an Order
+      parameters:
+        -
+          in: body
+          name: body
+          description: Edit an existing order
+          required: true
+          schema:
+            $ref: '#/definitions/OrderUpdateRequest'
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
 definitions:
   CoffeeResponse:
     type: object
