@@ -20,7 +20,7 @@ produces:
 paths:
 
   /coffee:
-    x-swagger-router-controller: hello_world
+    x-swagger-router-controller: coffee_warehouse
     get:
       tags:
         - Coffee
@@ -42,7 +42,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
 
-  /coffee/{id}/:
+  /coffee/{id}:
     get:
       tags:
         - Coffee
@@ -325,6 +325,30 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /orders/coffee/location/{location}:
+    get:
+      tags:
+        - Orders
+      description: List all orders that contain a certain coffee in the order
+      operationId: getOrdersByCoffeeLocation
+      produces:
+        - application/json
+      parameters:
+        -
+          name: location
+          in: path
+          description: List all orders that contain a certain coffee in the order
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'           
   /orders/status/{orderStatus}:
     get:
       tags:
