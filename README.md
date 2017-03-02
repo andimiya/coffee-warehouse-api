@@ -1,3 +1,10 @@
+# To Run Swagger UI on Local Machine
+
+1. `npm run server`
+2. Go to: `http://localhost:8080`
+
+===============================
+
 # Coffee Warehouse API
 
 You've been tasked to build a RESTful API that will help serve and manage data of coffee at a warehouse. Another team will be depending this API in building a front-end application to interact with it.
