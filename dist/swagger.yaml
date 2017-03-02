@@ -34,6 +34,12 @@ paths:
              $ref: '#/definitions/CoffeeResponse'
        500:
          description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
 
  /coffee/{id}:
    get:
@@ -56,7 +62,13 @@ paths:
          schema:
            $ref: '#/definitions/CoffeeResponse'
        500:
-        description: Server Error
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
  /coffee/name/{coffeeName}:
    get:
      tags:
@@ -78,12 +90,18 @@ paths:
          schema:
            $ref: '#/definitions/CoffeeResponse'
        500:
-        description: Server Error
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
  /coffee/location/{locationId}:
   get:
     tags:
       - Coffee
-    description: query will need to get coffee by location
+    description: Get all coffees by location
     operationId: getCoffeeLocation
     produces:
       - application/json
@@ -100,7 +118,13 @@ paths:
         schema:
           $ref: '#/definitions/CoffeeResponse'
       500:
-       description: Server Error
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+      default:
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
  /coffee/caffiene-under/{caffieneLevel}:
   get:
     tags:
@@ -122,7 +146,13 @@ paths:
         schema:
           $ref: '#/definitions/CoffeeResponse'
       500:
-       description: Server Error
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+      default:
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
  /coffee/caffiene-over/{caffieneLevel}:
   get:
     tags:
@@ -144,7 +174,13 @@ paths:
         schema:
           $ref: '#/definitions/CoffeeResponse'
       500:
-       description: Server Error
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
+      default:
+        description: Server Error
+        schema:
+          $ref: '#/definitions/ErrorResponse'
  /coffee/new-coffee:
   post:
     tags:
