@@ -150,7 +150,7 @@ paths:
     tags:
       - Coffee
     description: Add a new coffee to the warehouse
-    operationId: postCoffee
+    operationId: postNewCoffee
     produces:
       - "application/json"
     parameters:
@@ -235,13 +235,13 @@ paths:
    get:
      tags:
        - Orders
-     description: "Gets all the orders"
-     operationId: "getAllCoffee"
+     description: Gets all the orders
+     operationId: getAllCoffee
      produces:
-       - "application/json"
+       - application/json
      responses:
        200:
-         description: "Successful Response"
+         description: Successful Response
          schema:
              $ref: '#/definitions/OrderResponse'
        500:
@@ -250,10 +250,10 @@ paths:
   get:
     tags:
       - Orders
-    description: "Get an order based by its ID"
-    operationId: "getOrder"
+    description: Get an order based by its ID
+    operationId: getOrderId
     produces:
-      - "application/json"
+      - application/json
     parameters:
       -
         name: id
@@ -263,31 +263,55 @@ paths:
         type: number
     responses:
       200:
-        description: "Successful Response"
+        description: Successful Response
         schema:
             $ref: '#/definitions/OrderResponse'
       500:
         description: Server Error
- /orders/name/{name}:
-  get:
-    tags:
-      - "Orders"
-    description: "List an order based by its ID"
-    operationId: "getOrder"
-    produces:
-      - "text"
-    parameters:
-      -
-        name: "name"
-        in: "query"
-        description: "List an order based by its ID"
-        required: false
-        type: "string"
-    responses:
-      200:
-        description: "aqi response"
-      default:
-        description: "unexpected error"
+  /orders/coffee/{coffeeType}:
+   get:
+     tags:
+       - Orders
+     description: List all orders that contain a certain coffee in the order
+     operationId: getOrdersByCoffeeResults
+     produces:
+       - application/json
+     parameters:
+       -
+         name: coffeeType
+         in: query
+         description: List all orders that contain a certain coffee in the order
+         required: false
+         type: string
+     responses:
+       200:
+         description: "Successful Response"
+         schema:
+           $ref: '#/definitions/OrderResponse'
+       500:
+         description: Server Error
+  /orders/new-order:
+   post:
+     tags:
+       - Orders
+     description: Add a new order to the warehouse
+     operationId: postNewOrder
+     produces:
+       - application/json
+     parameters:
+       -
+         name: coffee
+         in: query
+         description: List all orders that contain a certain coffee in the order
+         required: false
+         type: string
+     responses:
+       200:
+         description: "Successful Response"
+         schema:
+           $ref: '#/definitions/OrderResponse'
+       500:
+         description: Server Error
 securityDefinitions:
   internalApiKey:
     type: apiKey
