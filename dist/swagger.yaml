@@ -174,7 +174,7 @@ paths:
         description: Server Error
         schema:
           $ref: '#/definitions/ErrorResponse'
- /coffee/update-coffee:
+ /coffee/update-coffee/{id}:
   put:
     tags:
       - Coffee
@@ -188,7 +188,7 @@ paths:
         description: Coffee Item
         required: true
         schema:
-          $ref: '#/definitions/CoffeeItemUpdateRequest'
+          $ref: '#/definitions/CoffeeUpdateRequest'
     responses:
       200:
         description: Successful Response
@@ -204,7 +204,7 @@ paths:
         description: Server Error
         schema:
           $ref: '#/definitions/ErrorResponse'
- /coffee/delete-coffee:
+ /coffee/delete-coffee/{id}:
   delete:
     tags:
       - "Coffee"
@@ -265,10 +265,10 @@ paths:
       200:
         description: Successful Response
         schema:
-            $ref: '#/definitions/OrderResponse'
+            $ref: '#/definitions/SuccessResponse'
       500:
         description: Server Error
-  /orders/coffee/{coffeeType}:
+ /orders/coffee/{coffeeType}:
    get:
      tags:
        - Orders
@@ -292,7 +292,7 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
-  /orders/new-order:
+ /orders/new-order:
    post:
      tags:
        - Orders
@@ -307,7 +307,37 @@ paths:
          description: Add a new order to the warehouse
          required: true
          schema:
-           $ref: '#/definitions/OrderItem'
+           $ref: '#/definitions/Order'
+     responses:
+       200:
+         description: "Successful Response"
+         schema:
+           $ref: '#/definitions/OrderResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+
+ /orders/update-order/{id}:
+   put:
+     tags:
+       - Orders
+     description: Edit an Order
+     operationId: editOrder
+     produces:
+       - application/json
+     parameters:
+       -
+         in: body
+         name: body
+         description: Edit an existing order
+         required: true
+         schema:
+           $ref: '#/definitions/OrderUpdateRequest'
      responses:
        200:
          description: "Successful Response"
@@ -333,8 +363,8 @@ definitions:
       coffee:
         type: array
         items:
-          $ref: '#/definitions/CoffeeItem'
-  CoffeeItem:
+          $ref: '#/definitions/Coffee'
+  Coffee:
     type: object
     properties:
       name:
@@ -360,7 +390,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Order'
-  CoffeeItemUpdateRequest:
+  CoffeeUpdateRequest:
     type: object
     properties:
       name:
