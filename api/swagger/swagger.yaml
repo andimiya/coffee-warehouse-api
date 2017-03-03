@@ -748,6 +748,33 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
+  /customer/delete/name/{lastName}:
+   delete:
+     tags:
+       - Customers
+     description: Remove a customer by last name from the warehouse database
+     operationId: deleteCustomerByName
+     produces:
+       - text
+     parameters:
+       - name: lastName
+         in: path
+         description: Remove a customer by last name from the warehouse database
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
