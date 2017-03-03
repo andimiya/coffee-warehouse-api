@@ -1,0 +1,22 @@
+{
+  "name": "coffee-warehouse-api",
+  "version": "1.0.0",
+  "description": "1. `swagger project edit`",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andimiya/coffee-warehouse-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andimiya/coffee-warehouse-api/issues"
+  },
+  "homepage": "https://github.com/andimiya/coffee-warehouse-api#readme",
+  "dependencies": {
+    "express": "^4.15.0"
+  }
+}
