@@ -97,6 +97,62 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /coffee/high-price/{coffeePrice}:
+    get:
+      tags:
+        - Coffee
+      description: View all coffees priced higher than X
+      operationId: getCoffeeHighPrice
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeePrice
+          in: path
+          description: View all coffees priced higher than X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/low-price/{coffeePrice}:
+    get:
+      tags:
+        - Coffee
+      description: View all coffees priced lower than X
+      operationId: getCoffeeLowPrice
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeePrice
+          in: path
+          description: View all coffees priced lower than X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /coffee/location/{location}:
    get:
      tags:
@@ -129,7 +185,7 @@ paths:
    get:
      tags:
        - Coffee
-     description: Get all coffees with a particular caffeine level
+     description: Get all coffees by caffeine level
      operationId: getCoffeeCaffiene
      produces:
        - application/json
@@ -137,7 +193,7 @@ paths:
        -
          name: caffieneLevel
          in: path
-         description: Get all coffees with a particular caffeine level
+         description: Get all coffees by caffeine level
          required: true
          type: string
      responses:
@@ -277,6 +333,33 @@ paths:
        - name: id
          in: path
          description: Allow authorized users to remove coffees from the warehouse
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/delete/name/{name}:
+   delete:
+     tags:
+       - Coffee
+     description: Remove a coffee by coffee name
+     operationId: deleteCoffeeByName
+     produces:
+       - text
+     parameters:
+       - name: name
+         in: path
+         description: Remove a coffee by coffee name
          required: true
          type: number
      responses:
