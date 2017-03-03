@@ -1,0 +1,9 @@
+get:
+  tags:
+    - Coffee
+  description: Gets all the coffees in the warehouse
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Coffee'

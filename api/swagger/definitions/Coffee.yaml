@@ -1,0 +1,10 @@
+type: object
+properties:
+  name:
+    type: string
+  location:
+    type: string
+  caffeieneLevel:
+    type: number
+  price:
+    type: number

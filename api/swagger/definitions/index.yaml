@@ -1,0 +1,4 @@
+Coffee:
+  $ref: ./Coffee.yaml
+CoffeeResponse:
+  $ref: ./CoffeeResponse.yaml

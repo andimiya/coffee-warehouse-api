@@ -1,0 +1,6 @@
+type: object
+properties:
+  coffee:
+    type: array
+    items:
+      $ref: '#/definitions/Coffee'
