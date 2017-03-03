@@ -457,6 +457,7 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
+
   /orders/new:
     post:
       tags:
@@ -486,7 +487,6 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
-
   /orders/update:
     put:
       tags:
@@ -800,6 +800,8 @@ definitions:
     properties:
       orderStatus:
         type: string
+      orderAmount:
+        type: number
   Customer:
     type: object
     properties:
@@ -831,6 +833,8 @@ definitions:
     properties:
       orderStatus:
         type: string
+      orderAmount:
+        type: number
   OrderResponse:
     type: object
     properties:
