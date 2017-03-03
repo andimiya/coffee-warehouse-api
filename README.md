@@ -1,7 +1,4 @@
-# To Run Swagger UI on Local Machine
-
-1. `swagger project edit`
-
+Trying to modularize the YAML files
 
 
 ===============================
