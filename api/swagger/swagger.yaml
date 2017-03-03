@@ -348,33 +348,6 @@ paths:
          description: Server Error
          schema:
            $ref: '#/definitions/ErrorResponse'
-  /coffee/delete/name/{name}:
-   delete:
-     tags:
-       - Coffee
-     description: Remove a coffee by coffee name
-     operationId: deleteCoffeeByName
-     produces:
-       - text
-     parameters:
-       - name: name
-         in: path
-         description: Remove a coffee by coffee name
-         required: true
-         type: number
-     responses:
-       200:
-         description: Successfully Deleted
-       404:
-         description: Not Found
-       500:
-         description: Server Error
-         schema:
-           $ref: '#/definitions/ErrorResponse'
-       default:
-         description: Server Error
-         schema:
-           $ref: '#/definitions/ErrorResponse'
   /orders:
     get:
       tags:
