@@ -1,7 +1,8 @@
 # To Run Swagger UI on Local Machine
 
-1. `npm run server`
-2. Go to: `http://localhost:8080`
+1. `swagger project edit`
+
+
 
 ===============================
 

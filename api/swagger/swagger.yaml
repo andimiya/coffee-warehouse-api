@@ -1,0 +1,993 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+
+  /coffee:
+    x-swagger-router-controller: hello_world
+    get:
+      tags:
+        - Coffee
+      description: Gets all the coffees in the warehouse
+      operationId: getAllCoffee
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          schema:
+              $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  /coffee/{id}/:
+    get:
+      tags:
+        - Coffee
+      description: Gets coffee by ID
+      operationId: getCoffeeId
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Coffee by ID
+          required: true
+          type: number
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/name/{coffeeName}:
+    get:
+      tags:
+        - Coffee
+      description: query will need to get coffee by name
+      operationId: getCoffeeName
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeeName
+          in: path
+          description: Coffee by Name
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/high-price/{coffeePrice}:
+    get:
+      tags:
+        - Coffee
+      description: View all coffees priced higher than X
+      operationId: getCoffeeHighPrice
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeePrice
+          in: path
+          description: View all coffees priced higher than X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/low-price/{coffeePrice}:
+    get:
+      tags:
+        - Coffee
+      description: View all coffees priced lower than X
+      operationId: getCoffeeLowPrice
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeePrice
+          in: path
+          description: View all coffees priced lower than X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/CoffeeResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /coffee/location/{location}:
+   get:
+     tags:
+       - Coffee
+     description: Get all coffees by location
+     operationId: getCoffeeLocation
+     produces:
+       - application/json
+     parameters:
+       -
+         name: location
+         in: path
+         description: Coffee by Location
+         required: true
+         type: string
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/CoffeeResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/caffiene/{caffieneLevel}:
+   get:
+     tags:
+       - Coffee
+     description: Get all coffees by caffeine level
+     operationId: getCoffeeCaffiene
+     produces:
+       - application/json
+     parameters:
+       -
+         name: caffieneLevel
+         in: path
+         description: Get all coffees by caffeine level
+         required: true
+         type: string
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/CoffeeResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/caffiene-under/{caffieneLevel}:
+   get:
+     tags:
+       - Coffee
+     description: Find coffees with a caffeine level below X
+     operationId: getCaffeieneUnder
+     produces:
+       - application/json
+     parameters:
+       -
+         name: caffieneLevel
+         in: path
+         description: Coffee by with a caffeiene level below X
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/CoffeeResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/caffiene-over/{caffieneLevel}:
+   get:
+     tags:
+       - Coffee
+     description: Find coffees with a caffeine level above X
+     operationId: getCaffeieneOver
+     produces:
+       - application/json
+     parameters:
+       -
+         name: caffieneLevel
+         in: path
+         description: Find coffees with a caffeine level above X
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/CoffeeResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/new:
+   post:
+     tags:
+       - Coffee
+     description: Add a new coffee to the warehouse
+     operationId: postNewCoffee
+     produces:
+       - application/json
+     parameters:
+       -
+         in: body
+         name: body
+         description: Allow authorized users to post new coffees to the warehouse
+         required: true
+         schema:
+           $ref: '#/definitions/Coffee'
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/update/:
+   put:
+     tags:
+       - Coffee
+     description: Edit coffee information
+     parameters:
+       - in: body
+         name: body
+         description: Coffee Item
+         required: true
+         schema:
+           $ref: '#/definitions/CoffeeUpdateRequest'
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/SuccessResponse'
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /coffee/delete/{id}:
+   delete:
+     tags:
+       - Coffee
+     description: Remove a coffee from the warehouse
+     operationId: deleteCoffee
+     produces:
+       - text
+     parameters:
+       - name: id
+         in: path
+         description: Allow authorized users to remove coffees from the warehouse
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /orders:
+    get:
+      tags:
+        - Orders
+      description: Gets all the orders
+      operationId: getAllOrders
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          schema:
+              $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+  /orders/{id}:
+   get:
+     tags:
+       - Orders
+     description: Get an order based by its ID
+     operationId: getOrderId
+     produces:
+       - application/json
+     parameters:
+       -
+         name: id
+         in: path
+         description: Get an order based by its ID
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /orders/coffee/{coffeeType}:
+    get:
+      tags:
+        - Orders
+      description: List all orders that contain a certain coffee in the order
+      operationId: getOrdersByCoffeeResults
+      produces:
+        - application/json
+      parameters:
+        -
+          name: coffeeType
+          in: path
+          description: List all orders that contain a certain coffee in the order
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/coffee/location/{location}:
+    get:
+      tags:
+        - Orders
+      description: Get orders containing coffees from a certain location
+      operationId: getOrdersByCoffeeLocation
+      produces:
+        - application/json
+      parameters:
+        -
+          name: location
+          in: path
+          description: Get orders containing coffees from a certain location
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/coffee/caffeine/{caffeieneLevel}:
+    get:
+      tags:
+        - Orders
+      description: Get orders containing coffees with a particular caffeiene level
+      operationId: getOrdersByCoffeeCaffeiene
+      produces:
+        - application/json
+      parameters:
+        -
+          name: caffeieneLevel
+          in: path
+          description: Get orders containing coffees with a particular caffeiene level
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/status/{orderStatus}:
+    get:
+      tags:
+        - Orders
+      description: View orders by order status
+      operationId: getOrderStatus
+      produces:
+        - application/json
+      parameters:
+        -
+          name: orderStatus
+          in: path
+          description: View orders by order status
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/customer/{customerName}:
+    get:
+      tags:
+        - Orders
+      description: View orders by customer name
+      operationId: getOrderByCustomer
+      produces:
+        - application/json
+      parameters:
+        -
+          name: customerName
+          in: path
+          description: View orders by customer name
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/high-revenue/{orderTotal}:
+    get:
+      tags:
+        - Orders
+      description: View orders with a total invoice amount over X
+      operationId: getHighRevenueOrders
+      produces:
+        - application/json
+      parameters:
+        -
+          name: orderTotal
+          in: path
+          description: View orders with a total invoice amount over X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/low-revenue/{orderTotal}:
+    get:
+      tags:
+        - Orders
+      description: View orders with a total invoice amount under X
+      operationId: getLowRevenueOrders
+      produces:
+        - application/json
+      parameters:
+        -
+          name: orderTotal
+          in: path
+          description: View orders with a total invoice amount under X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/new:
+    post:
+      tags:
+        - Orders
+      description: Add a new order to the warehouse
+      operationId: postNewOrder
+      produces:
+        - application/json
+      parameters:
+        -
+          in: body
+          name: body
+          description: Add a new order to the warehouse
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/update:
+    put:
+      tags:
+        - Orders
+      description: Edit an Order
+      parameters:
+        -
+          in: body
+          name: body
+          description: Edit an existing order
+          required: true
+          schema:
+            $ref: '#/definitions/OrderUpdateRequest'
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /order/delete/{id}:
+   delete:
+     tags:
+       - Orders
+     description: Remove an order from the warehouse
+     operationId: deleteOrder
+     produces:
+       - text
+     parameters:
+       - name: id
+         in: path
+         description: Allow authorized users to remove orders from the warehouse
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /customers:
+    get:
+      tags:
+        - Customers
+      description: Gets all the customers
+      operationId: getAllCustomers
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          schema:
+              $ref: '#/definitions/CustomerResponse'
+        500:
+          description: Server Error
+  /customers/{id}:
+   get:
+     tags:
+       - Customers
+     description: Get a customer by customer ID
+     operationId: getCustomerId
+     produces:
+       - application/json
+     parameters:
+       -
+         name: id
+         in: path
+         description: Get a customer by customer ID
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/first-name/{firstName}:
+   get:
+     tags:
+       - Customers
+     description: Get a customer by customer's first name
+     operationId: getCustomerFirstName
+     produces:
+       - application/json
+     parameters:
+       -
+         name: firstName
+         in: path
+         description: Get a customer by customer's first name
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/last-name/{lastName}:
+   get:
+     tags:
+       - Customers
+     description: Get a customer by customer's last name
+     operationId: getCustomerLastName
+     produces:
+       - application/json
+     parameters:
+       -
+         name: lastName
+         in: path
+         description: Get a customer by customer's last name
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/coffee/{coffeeType}:
+   get:
+     tags:
+       - Customers
+     description: Get all customers who have ordered a certain coffee
+     operationId: getCustomerWithCoffee
+     produces:
+       - application/json
+     parameters:
+       -
+         name: coffeeType
+         in: path
+         description: Get all customers who have ordered a certain coffee
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/zipcode/{zipcode}:
+   get:
+     tags:
+       - Customers
+     description: Get all customers who live in a particular zip code
+     operationId: getCustomerByZipcode
+     produces:
+       - application/json
+     parameters:
+       -
+         name: zipcode
+         in: path
+         description: Get all customers who live in a particular zip code
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/new:
+   post:
+     tags:
+       - Customers
+     description: Add a new customer to the warehouse database
+     operationId: postNewCustomer
+     produces:
+       - application/json
+     parameters:
+       -
+         in: body
+         name: body
+         description: Allow authorized users to add new customers to the warehouse database
+         required: true
+         schema:
+           $ref: '#/definitions/Customer'
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /customers/update:
+   put:
+     tags:
+       - Customers
+     description: Edit a customer's information
+     parameters:
+       - in: body
+         name: body
+         description: Edit a customer's information
+         required: true
+         schema:
+           $ref: '#/definitions/CustomerUpdateRequest'
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/SuccessResponse'
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /customer/delete/{id}:
+   delete:
+     tags:
+       - Customers
+     description: Remove a customer from the warehouse database
+     operationId: deleteCustomer
+     produces:
+       - text
+     parameters:
+       - name: id
+         in: path
+         description: Allow authorized users to remove customers from the warehouse database
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /customer/delete/name/{lastName}:
+   delete:
+     tags:
+       - Customers
+     description: Remove a customer by last name from the warehouse database
+     operationId: deleteCustomerByName
+     produces:
+       - text
+     parameters:
+       - name: lastName
+         in: path
+         description: Remove a customer by last name from the warehouse database
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  CoffeeResponse:
+    type: object
+    properties:
+      coffee:
+        type: array
+        items:
+          $ref: '#/definitions/Coffee'
+  Coffee:
+    type: object
+    properties:
+      name:
+        type: string
+      location:
+        type: string
+      caffeieneLevel:
+        type: number
+      price:
+        type: number
+  Order:
+    type: object
+    properties:
+      orderStatus:
+        type: string
+      orderTotal:
+        type: number
+  Customer:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      streetAddress:
+        type: string
+      zipcode:
+        type: number
+      phone:
+        type: number
+  CustomerUpdateRequest:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      streetAddress:
+        type: string
+      zipcode:
+        type: number
+      phone:
+        type: number
+  OrderUpdateRequest:
+    type: object
+    properties:
+      orderStatus:
+        type: string
+      orderTotal:
+        type: number
+  OrderResponse:
+    type: object
+    properties:
+      order:
+        type: array
+        items:
+          $ref: '#/definitions/Order'
+  CustomerResponse:
+    type: object
+    properties:
+      order:
+        type: array
+        items:
+          $ref: '#/definitions/Customer'
+  CoffeeUpdateRequest:
+    type: object
+    properties:
+      name:
+        type: string
+      location:
+        type: string
+      caffeieneLevel:
+        type: number
+      price:
+        type: number
+  SuccessResponse:
+      title: Success
+      type: object
+      items:
+        title: Message
+        type: object
+      properties:
+        message:
+          type: string
+  ErrorResponse:
+    title: Error
+    type: object
+    items:
+      title: Message
+      type: object
+    properties:
+      message:
+        type: string
