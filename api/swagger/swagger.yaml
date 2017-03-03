@@ -550,7 +550,94 @@ paths:
              $ref: '#/definitions/SuccessResponse'
        500:
          description: Server Error
-
+  /customers/first-name/{firstName}:
+   get:
+     tags:
+       - Customers
+     description: Get a customer by customer's first name
+     operationId: getCustomerFirstName
+     produces:
+       - application/json
+     parameters:
+       -
+         name: firstName
+         in: path
+         description: Get a customer by customer's first name
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/last-name/{lastName}:
+   get:
+     tags:
+       - Customers
+     description: Get a customer by customer's last name
+     operationId: getCustomerLastName
+     produces:
+       - application/json
+     parameters:
+       -
+         name: lastName
+         in: path
+         description: Get a customer by customer's last name
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/coffee/{coffeeType}:
+   get:
+     tags:
+       - Customers
+     description: Get all customers who have ordered a certain coffee
+     operationId: getCustomerWithCoffee
+     produces:
+       - application/json
+     parameters:
+       -
+         name: coffeeType
+         in: path
+         description: Get all customers who have ordered a certain coffee
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+  /customers/zipcode/{zipcode}:
+   get:
+     tags:
+       - Customers
+     description: Get all customers who live in a particular zip code
+     operationId: getCustomerByZipcode
+     produces:
+       - application/json
+     parameters:
+       -
+         name: zipcode
+         in: path
+         description: Get all customers who live in a particular zip code
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -579,11 +666,13 @@ definitions:
   Customer:
     type: object
     properties:
-      name:
+      firstName:
+        type: string
+      lastName:
         type: string
       streetAddress:
         type: string
-      zipCode:
+      zipcode:
         type: number
       phone:
         type: number
