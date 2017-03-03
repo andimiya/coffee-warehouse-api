@@ -513,6 +513,43 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /customers:
+    get:
+      tags:
+        - Customers
+      description: Gets all the customers
+      operationId: getAllCustomers
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Successful Response
+          schema:
+              $ref: '#/definitions/CustomerResponse'
+        500:
+          description: Server Error
+  /customers/{id}:
+   get:
+     tags:
+       - Customers
+     description: Get a customer by customer ID
+     operationId: getCustomerId
+     produces:
+       - application/json
+     parameters:
+       -
+         name: id
+         in: path
+         description: Get a customer by customer ID
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successful Response
+         schema:
+             $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
 
   /swagger:
     x-swagger-pipe: swagger_raw
@@ -539,6 +576,17 @@ definitions:
     properties:
       orderStatus:
         type: string
+  Customer:
+    type: object
+    properties:
+      name:
+        type: string
+      streetAddress:
+        type: string
+      zipCode:
+        type: number
+      phone:
+        type: number
   OrderUpdateRequest:
     type: object
     properties:
@@ -551,6 +599,13 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Order'
+  CustomerResponse:
+    type: object
+    properties:
+      order:
+        type: array
+        items:
+          $ref: '#/definitions/Customer'
   CoffeeUpdateRequest:
     type: object
     properties:
