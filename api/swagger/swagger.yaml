@@ -457,7 +457,62 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
-
+  /orders/high-revenue/{orderTotal}:
+    get:
+      tags:
+        - Orders
+      description: View orders with a total invoice amount over X
+      operationId: getHighRevenueOrders
+      produces:
+        - application/json
+      parameters:
+        -
+          name: orderTotal
+          in: path
+          description: View orders with a total invoice amount over X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /orders/low-revenue/{orderTotal}:
+    get:
+      tags:
+        - Orders
+      description: View orders with a total invoice amount under X
+      operationId: getLowRevenueOrders
+      produces:
+        - application/json
+      parameters:
+        -
+          name: orderTotal
+          in: path
+          description: View orders with a total invoice amount under X
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /orders/new:
     post:
       tags:
@@ -795,12 +850,14 @@ definitions:
         type: string
       caffeieneLevel:
         type: number
+      price:
+        type: number
   Order:
     type: object
     properties:
       orderStatus:
         type: string
-      orderAmount:
+      orderTotal:
         type: number
   Customer:
     type: object
@@ -833,7 +890,7 @@ definitions:
     properties:
       orderStatus:
         type: string
-      orderAmount:
+      orderTotal:
         type: number
   OrderResponse:
     type: object
@@ -857,6 +914,8 @@ definitions:
       location:
         type: string
       caffeieneLevel:
+        type: number
+      price:
         type: number
   SuccessResponse:
       title: Success
