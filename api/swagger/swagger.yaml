@@ -513,6 +513,33 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /order/delete/{id}:
+   delete:
+     tags:
+       - Orders
+     description: Remove an order from the warehouse
+     operationId: deleteOrder
+     produces:
+       - text
+     parameters:
+       - name: id
+         in: path
+         description: Allow authorized users to remove orders from the warehouse
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
   /customers:
     get:
       tags:
@@ -638,6 +665,89 @@ paths:
              $ref: '#/definitions/SuccessResponse'
        500:
          description: Server Error
+  /customers/new:
+   post:
+     tags:
+       - Customers
+     description: Add a new customer to the warehouse database
+     operationId: postNewCustomer
+     produces:
+       - application/json
+     parameters:
+       -
+         in: body
+         name: body
+         description: Allow authorized users to add new customers to the warehouse database
+         required: true
+         schema:
+           $ref: '#/definitions/Customer'
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/SuccessResponse'
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /customers/update:
+   put:
+     tags:
+       - Customers
+     description: Edit a customer's information
+     parameters:
+       - in: body
+         name: body
+         description: Edit a customer's information
+         required: true
+         schema:
+           $ref: '#/definitions/CustomerUpdateRequest'
+     responses:
+       200:
+         description: Successful Response
+         schema:
+           $ref: '#/definitions/SuccessResponse'
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+  /customer/delete/{id}:
+   delete:
+     tags:
+       - Customers
+     description: Remove a customer from the warehouse database
+     operationId: deleteCustomer
+     produces:
+       - text
+     parameters:
+       - name: id
+         in: path
+         description: Allow authorized users to remove customers from the warehouse database
+         required: true
+         type: number
+     responses:
+       200:
+         description: Successfully Deleted
+       404:
+         description: Not Found
+       500:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
+       default:
+         description: Server Error
+         schema:
+           $ref: '#/definitions/ErrorResponse'
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -664,6 +774,19 @@ definitions:
       orderStatus:
         type: string
   Customer:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      streetAddress:
+        type: string
+      zipcode:
+        type: number
+      phone:
+        type: number
+  CustomerUpdateRequest:
     type: object
     properties:
       firstName:
