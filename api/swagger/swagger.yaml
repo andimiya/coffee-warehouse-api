@@ -349,6 +349,30 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /orders/coffee/caffeine/{caffeieneLevel}:
+    get:
+      tags:
+        - Orders
+      description: Get orders containing coffees with a particular caffeiene level
+      operationId: getOrdersByCoffeeCaffeiene
+      produces:
+        - application/json
+      parameters:
+        -
+          name: caffeieneLevel
+          in: path
+          description: Get orders containing coffees with a particular caffeiene level
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful Response
+          schema:
+            $ref: '#/definitions/OrderResponse'
+        500:
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /orders/status/{orderStatus}:
     get:
       tags:
@@ -377,19 +401,19 @@ paths:
           description: Server Error
           schema:
             $ref: '#/definitions/ErrorResponse'
-  /orders/customer/{orderStatus}:
+  /orders/customer/{customerName}:
     get:
       tags:
         - Orders
-      description: View orders by order status
-      operationId: getOrderStatus
+      description: View orders by customer name
+      operationId: getOrderByCustomer
       produces:
         - application/json
       parameters:
         -
-          name: orderStatus
+          name: customerName
           in: path
-          description: View orders by order status
+          description: View orders by customer name
           required: true
           type: string
       responses:
