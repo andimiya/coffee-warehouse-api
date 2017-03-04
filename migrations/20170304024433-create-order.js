@@ -20,7 +20,6 @@ module.exports = {
           model: 'customer',
           key: 'id'
         }
-
       }
       createdAt: {
         allowNull: false,
