@@ -25,4 +25,17 @@ router.get('/:id', (req, res) => {
   })
 });
 
+router.get('/name/:coffeeName', (req, res) => {
+  Coffee.findById(req.params.coffeeName)
+  .then ( coffee => {
+    res.render('pages/coffee', {
+      "coffee": coffee,
+    });
+  })
+  .catch( err => {
+    res.render('pages/error');
+  })
+});
+
+
 module.exports = router;
