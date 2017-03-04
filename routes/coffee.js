@@ -37,5 +37,21 @@ router.get('/name/:coffeeName', (req, res) => {
   })
 });
 
+router.post('/new', (req, res) => {
+  Photo.create({
+    name: req.body.name,
+    location: req.body.location,
+    caffeineLevel: req.body.caffeineLevel,
+    price: req.body.price
+  })
+    .then( photos => {
+      res.redirect('/');
+    })
+    .catch( err => {
+      res.render('pages/error');
+    });
+});
+
+
 
 module.exports = router;
