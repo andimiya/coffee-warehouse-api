@@ -1,8 +1,7 @@
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var CoffeeOrder = sequelize.define("CoffeeOrder", {
-    coffee_ID: DataTypes.INTEGER,
-    order_ID: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER,
+  var CoffeeOrder = sequelize.define('CoffeeOrder', {
+    quantity: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
@@ -11,6 +10,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-
   return CoffeeOrder;
 };

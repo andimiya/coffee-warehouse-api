@@ -1,8 +1,9 @@
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Coffee = sequelize.define("Coffee", {
+  var Coffee = sequelize.define('Coffee', {
     name: DataTypes.STRING,
     location: DataTypes.STRING,
-    caffeieneLevel: DataTypes.INTEGER,
+    caffeineLevel: DataTypes.INTEGER,
     price: DataTypes.INTEGER
   }, {
     classMethods: {
@@ -11,6 +12,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-
   return Coffee;
 };
