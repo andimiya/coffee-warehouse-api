@@ -38,7 +38,7 @@ router.get('/name/:coffeeName', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  Photo.create({
+  Coffee.create({
     name: req.body.name,
     location: req.body.location,
     caffeineLevel: req.body.caffeineLevel,
