@@ -20,7 +20,7 @@ module.exports = {
           model: 'customer',
           key: 'id'
         }
-      }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
