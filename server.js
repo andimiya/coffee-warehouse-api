@@ -1,6 +1,7 @@
 const express = require('express');
-const app = express();
 const PORT = 3000;
+const handlebars = require('express-handlebars');
+const app = express();
 const bp = require('body-parser');
 const db = require('./models');
 const { Coffee, Customer, Order, CoffeeOrder } = db;
@@ -16,6 +17,16 @@ app.use(bp.urlencoded({ extended: true }));
 app.use('/coffee', coffee);
 // app.use('orders', orders);
 // app.use('/customers', customers);
+
+//handlebars
+const hbs = handlebars.create({
+  extname: '.hbs',
+  defaultLayout: 'app'
+});
+
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+
 
 app.listen(3000, function() {
   console.log(`Listening on ${PORT}`);
