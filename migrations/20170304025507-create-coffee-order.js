@@ -11,20 +11,20 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
-      coffee_ID: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'customer',
-          key: 'id'
-        }
-      },
-      order_ID: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'order',
-          key: 'id'
-        }
-      },
+      // coffee_ID: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'customer',
+      //     key: 'id'
+      //   }
+      // },
+      // order_ID: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'order',
+      //     key: 'id'
+      //   }
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

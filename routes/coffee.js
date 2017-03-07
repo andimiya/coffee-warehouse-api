@@ -44,7 +44,7 @@ router.get('/name/:coffeePrice', (req, res) => {
   Coffee.findAll({
     where: [ "price" > req.params.coffeePrice ] })
   .then ( coffees => {
-    res.render('pages/coffee', {
+    res.json({
       "coffees": coffees,
     });
   })
@@ -61,10 +61,10 @@ router.post('/new', (req, res) => {
     price: req.body.price
   })
     .then( photos => {
-      res.redirect('/');
+      res.send('success');
     })
     .catch( err => {
-      res.render('pages/error');
+      res.send('error');
     });
 });
 
