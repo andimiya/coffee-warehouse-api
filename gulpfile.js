@@ -3,7 +3,7 @@ const scss = require('gulp-sass');
 const nodemon = require('gulp-nodemon');
 
 gulp.task('scss', () => {
-  return gulp.src('./scss/*.scss')
+    return gulp.src('./scss/*.scss')
     .pipe(scss())
     .pipe(gulp.dest('./public/css'));
 });
