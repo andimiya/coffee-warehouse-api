@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../models');
+const { Coffee, Customer, Order, CoffeeOrder } = db;
+
 
 router.get('/', (req, res) => {
   Coffee.findAll()
@@ -64,7 +67,5 @@ router.post('/new', (req, res) => {
       res.render('pages/error');
     });
 });
-
-
 
 module.exports = router;
