@@ -29,7 +29,11 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/name/:coffeeName', (req, res) => {
-  Coffee.findById(req.params.coffeeName)
+  Coffee.findAll({
+    where: {
+      name: req.params.coffeeName
+    }
+  })
   .then ( coffee => {
     res.json({
       "coffee": coffee,
