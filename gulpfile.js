@@ -8,7 +8,7 @@ gulp.task('scss', () => {
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('nodemon', function (cb) {
+gulp.task('nodemon', function (cb){
 
   var started = false;
 
@@ -22,7 +22,6 @@ gulp.task('nodemon', function (cb) {
     }
   });
 });
-
 
 gulp.task('watch', () => {
   gulp.watch('./scss/**/*.scss', ['scss']);
