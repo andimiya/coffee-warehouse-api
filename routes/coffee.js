@@ -7,36 +7,36 @@ const { Coffee, Customer, Order, CoffeeOrder } = db;
 router.get('/', (req, res) => {
   Coffee.findAll()
   .then ( coffees => {
-    res.render('pages/coffees', {
+    res.json({
       "coffees": coffees,
     });
   })
   .catch( err => {
-    res.render('pages/error');
+    res.send('error');
   })
 });
 
 router.get('/:id', (req, res) => {
   Coffee.findById(req.params.id)
   .then ( coffee => {
-    res.render('pages/coffee', {
+    res.json({
       "coffee": coffee,
     });
   })
   .catch( err => {
-    res.render('pages/error');
+    res.send('error');
   })
 });
 
 router.get('/name/:coffeeName', (req, res) => {
   Coffee.findById(req.params.coffeeName)
   .then ( coffee => {
-    res.render('pages/coffee', {
+    res.json({
       "coffee": coffee,
     });
   })
   .catch( err => {
-    res.render('pages/error');
+    res.send('error');
   })
 });
 
@@ -49,7 +49,7 @@ router.get('/name/:coffeePrice', (req, res) => {
     });
   })
   .catch( err => {
-    res.render('pages/error');
+    res.send('error');
   })
 });
 
