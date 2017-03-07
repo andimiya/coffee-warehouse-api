@@ -37,6 +37,19 @@ router.get('/name/:coffeeName', (req, res) => {
   })
 });
 
+router.get('/name/:coffeePrice', (req, res) => {
+  Coffee.findAll({
+    where: [ "price" > req.params.coffeePrice ] })
+  .then ( coffees => {
+    res.render('pages/coffee', {
+      "coffees": coffees,
+    });
+  })
+  .catch( err => {
+    res.render('pages/error');
+  })
+});
+
 router.post('/new', (req, res) => {
   Coffee.create({
     name: req.body.name,
