@@ -44,9 +44,32 @@ router.get('/name/:coffeeName', (req, res) => {
   })
 });
 
-router.get('/name/:coffeePrice', (req, res) => {
+router.get('/high-price/:coffeePrice', (req, res) => {
   Coffee.findAll({
-    where: [ "price" > req.params.coffeePrice ] })
+    where: {
+      price: {
+        gt: req.params.coffeePrice
+      }
+    }
+  })
+  .then ( coffees => {
+    res.json({
+      "coffees": coffees,
+    });
+  })
+  .catch( err => {
+    res.send('error');
+  })
+});
+
+router.get('/low-price/:coffeePrice', (req, res) => {
+  Coffee.findAll({
+    where: {
+      price: {
+        gt: req.params.coffeePrice
+      }
+    }
+  })
   .then ( coffees => {
     res.json({
       "coffees": coffees,
