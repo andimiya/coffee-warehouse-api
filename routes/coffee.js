@@ -83,6 +83,52 @@ router.get('/location/:location', (req, res) => {
   })
 })
 
+router.get('/caffiene/:caffieneLevel', (req, res) => {
+  Coffee.findAll({
+    where: {
+      caffeine: req.params.caffieneLevel
+    }
+  })
+  .then(coffees => {
+    res.json({ coffees })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
+
+router.get('/low-caffiene/:caffieneLevel', (req, res) => {
+  Coffee.findAll({
+    where: {
+      caffeine: {
+        lt: req.params.caffieneLevel
+      }
+    }
+  })
+  .then(coffees => {
+    res.json({ coffees })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
+
+router.get('/high-caffiene/:caffieneLevel', (req, res) => {
+  Coffee.findAll({
+    where: {
+      caffeine: {
+        gt: req.params.caffieneLevel
+      }
+    }
+  })
+  .then(coffees => {
+    res.json({ coffees })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
+
 router.post('/new', (req, res) => {
   Coffee.create({
     name: req.body.name,

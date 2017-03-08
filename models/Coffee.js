@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Coffee = sequelize.define('Coffee', {
     name: DataTypes.STRING,
     location: DataTypes.STRING,
-    caffeineLevel: DataTypes.INTEGER,
+    caffeine: DataTypes.INTEGER,
     price: DataTypes.INTEGER
   }, {
     classMethods: {
