@@ -80,6 +80,22 @@ router.get('/low-price/:coffeePrice', (req, res) => {
   })
 });
 
+router.get('/location/:location', (req, res) => {
+  Coffee.findAll({
+    where: {
+      location: req.params.location
+    }
+  })
+  .then ( coffees => {
+    res.json({
+      "coffees": coffees,
+    });
+  })
+  .catch( err => {
+    res.send('error');
+  })
+});
+
 router.post('/new', (req, res) => {
   Coffee.create({
     name: req.body.name,
