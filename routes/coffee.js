@@ -162,4 +162,17 @@ router.put('/update/:id', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+  Coffee.destroy(
+    { where: {
+      id: req.params.id }
+    })
+    .then(coffees => {
+      res.send('success')
+    })
+    .catch(() => {
+      res.send('error')
+    })
+})
+
 module.exports = router
