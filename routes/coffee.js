@@ -144,4 +144,22 @@ router.post('/new', (req, res) => {
     })
 })
 
+router.put('/update/:id', (req, res) => {
+  Coffee.update({
+    name: req.body.name,
+    location: req.body.location,
+    caffeine: req.body.caffeine,
+    price: req.body.price
+  },
+    { where: {
+      id: req.params.id }
+    })
+    .then(coffees => {
+      res.send('success')
+    })
+    .catch(() => {
+      res.send('error')
+    })
+})
+
 module.exports = router
