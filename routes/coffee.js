@@ -133,7 +133,7 @@ router.post('/new', (req, res) => {
   Coffee.create({
     name: req.body.name,
     location: req.body.location,
-    caffeineLevel: req.body.caffeineLevel,
+    caffeine: req.body.caffeine,
     price: req.body.price
   })
     .then(coffees => {

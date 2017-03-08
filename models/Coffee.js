@@ -7,10 +7,10 @@ module.exports = function(sequelize, DataTypes) {
     price: DataTypes.INTEGER
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         Coffee.hasMany(models.CoffeeOrder)
       }
     }
   })
-  return Coffee;
-};
+  return Coffee
+}

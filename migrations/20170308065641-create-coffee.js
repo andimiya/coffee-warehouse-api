@@ -14,7 +14,7 @@ module.exports = {
       location: {
         type: Sequelize.STRING
       },
-      caffeineLevel: {
+      caffeine: {
         type: Sequelize.INTEGER
       },
       price: {
