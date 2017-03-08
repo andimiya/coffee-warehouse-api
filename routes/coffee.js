@@ -83,10 +83,10 @@ router.get('/location/:location', (req, res) => {
   })
 })
 
-router.get('/caffiene/:caffieneLevel', (req, res) => {
+router.get('/caffeine/:caffeineLevel', (req, res) => {
   Coffee.findAll({
     where: {
-      caffeine: req.params.caffieneLevel
+      caffeine: req.params.caffeineLevel
     }
   })
   .then(coffees => {
@@ -97,11 +97,11 @@ router.get('/caffiene/:caffieneLevel', (req, res) => {
   })
 })
 
-router.get('/low-caffiene/:caffieneLevel', (req, res) => {
+router.get('/low-caffeine/:caffeineLevel', (req, res) => {
   Coffee.findAll({
     where: {
       caffeine: {
-        lt: req.params.caffieneLevel
+        lt: req.params.caffeineLevel
       }
     }
   })
@@ -113,11 +113,11 @@ router.get('/low-caffiene/:caffieneLevel', (req, res) => {
   })
 })
 
-router.get('/high-caffiene/:caffieneLevel', (req, res) => {
+router.get('/high-caffeine/:caffeineLevel', (req, res) => {
   Coffee.findAll({
     where: {
       caffeine: {
-        gt: req.params.caffieneLevel
+        gt: req.params.caffeineLevel
       }
     }
   })
