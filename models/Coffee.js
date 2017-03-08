@@ -8,9 +8,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Coffee.hasMany(models.CoffeeOrder);
+        Coffee.hasMany(models.CoffeeOrder)
       }
     }
-  });
+  })
   return Coffee;
 };

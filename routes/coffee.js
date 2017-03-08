@@ -1,32 +1,27 @@
-const express = require('express');
-const router = express.Router();
-const db = require('../models');
-const { Coffee, Customer, Order, CoffeeOrder } = db;
-
+const express = require('express')
+const router = express.Router()
+const db = require('../models')
+const { Coffee } = db
 
 router.get('/', (req, res) => {
   Coffee.findAll()
-  .then ( coffees => {
-    res.json({
-      "coffees": coffees,
-    });
+  .then(coffees => {
+    res.json({ coffees })
   })
-  .catch( err => {
-    res.send('error');
+  .catch(() => {
+    res.send('error')
   })
-});
+})
 
 router.get('/:id', (req, res) => {
   Coffee.findById(req.params.id)
-  .then ( coffee => {
-    res.json({
-      "coffee": coffee,
-    });
+  .then(coffee => {
+    res.json({ coffee })
   })
-  .catch( err => {
-    res.send('error');
+  .catch(() => {
+    res.send('error')
   })
-});
+})
 
 router.get('/name/:coffeeName', (req, res) => {
   Coffee.findAll({
@@ -34,15 +29,13 @@ router.get('/name/:coffeeName', (req, res) => {
       name: req.params.coffeeName
     }
   })
-  .then ( coffee => {
-    res.json({
-      "coffee": coffee,
-    });
+  .then(coffee => {
+    res.json({ coffee })
   })
-  .catch( err => {
-    res.send('error');
+  .catch(() => {
+    res.send('error')
   })
-});
+})
 
 router.get('/high-price/:coffeePrice', (req, res) => {
   Coffee.findAll({
@@ -52,15 +45,13 @@ router.get('/high-price/:coffeePrice', (req, res) => {
       }
     }
   })
-  .then ( coffees => {
-    res.json({
-      "coffees": coffees,
-    });
+  .then(coffees => {
+    res.json({ coffees })
   })
-  .catch( err => {
-    res.send('error');
+  .catch(() => {
+    res.send('error')
   })
-});
+})
 
 router.get('/low-price/:coffeePrice', (req, res) => {
   Coffee.findAll({
@@ -70,15 +61,13 @@ router.get('/low-price/:coffeePrice', (req, res) => {
       }
     }
   })
-  .then ( coffees => {
-    res.json({
-      "coffees": coffees,
-    });
+  .then(coffees => {
+    res.json({ coffees })
   })
-  .catch( err => {
-    res.send('error');
+  .catch(() => {
+    res.send('error')
   })
-});
+})
 
 router.get('/location/:location', (req, res) => {
   Coffee.findAll({
@@ -86,15 +75,13 @@ router.get('/location/:location', (req, res) => {
       location: req.params.location
     }
   })
-  .then ( coffees => {
-    res.json({
-      "coffees": coffees,
-    });
+  .then(coffees => {
+    res.json({ coffees })
   })
-  .catch( err => {
-    res.send('error');
+  .catch(() => {
+    res.send('error')
   })
-});
+})
 
 router.post('/new', (req, res) => {
   Coffee.create({
@@ -103,12 +90,12 @@ router.post('/new', (req, res) => {
     caffeineLevel: req.body.caffeineLevel,
     price: req.body.price
   })
-    .then( photos => {
-      res.send('success');
+    .then(coffees => {
+      res.send('success')
     })
-    .catch( err => {
-      res.send('error');
-    });
-});
+    .catch(() => {
+      res.send('error')
+    })
+})
 
-module.exports = router;
+module.exports = router
