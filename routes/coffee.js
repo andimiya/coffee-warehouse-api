@@ -66,7 +66,7 @@ router.get('/low-price/:coffeePrice', (req, res) => {
   Coffee.findAll({
     where: {
       price: {
-        gt: req.params.coffeePrice
+        lt: req.params.coffeePrice
       }
     }
   })
