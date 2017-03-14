@@ -7,7 +7,7 @@ const db = require('./models');
 const { Coffee, Customer, Order, CoffeeOrder } = db;
 const CONFIG = require('./config/config.json');
 const coffee = require('./routes/coffee');
-// const orders = require('./routes/orders');
+const orders = require('./routes/orders');
 // const customer = require('./routes/customers');
 
 //bodyparser
