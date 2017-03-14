@@ -13,6 +13,16 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/:id', (req, res) => {
+  Customer.findById(req.params.id)
+  .then(coffee => {
+    res.json({ coffee })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
+
 router.post('/new', (req, res) => {
   Customer.create({
     firstName: req.body.firstName,
