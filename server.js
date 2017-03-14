@@ -15,7 +15,7 @@ app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
 app.use('/coffee', coffee);
-// app.use('orders', orders);
+app.use('/orders', orders);
 // app.use('/customers', customers);
 
 //handlebars
