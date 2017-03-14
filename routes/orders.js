@@ -3,15 +3,15 @@ const router = express.Router()
 const db = require('../models')
 const { Order } = db
 
-// router.get('/', (req, res) => {
-//   Order.findAll()
-//   .then(orders => {
-//     res.json({ orders })
-//   })
-//   .catch(() => {
-//     res.send('error')
-//   })
-// })
+router.get('/', (req, res) => {
+  Order.findAll()
+  .then(orders => {
+    res.json({ orders })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
 
 router.post('/new', (req, res) => {
   Order.create({
