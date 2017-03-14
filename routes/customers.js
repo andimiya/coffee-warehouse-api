@@ -5,7 +5,7 @@ const { Customer } = db
 
 router.post('/new', (req, res) => {
   Customer.create({
-    firstName: req.body.orderStatus,
+    firstName: req.body.firstName,
     lastName: req.body.lastName,
     streetAddress: req.body.streetAddress,
     zipcode: req.body.zipcode,
