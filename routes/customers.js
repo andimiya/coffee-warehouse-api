@@ -23,6 +23,20 @@ router.get('/:id', (req, res) => {
   })
 })
 
+// router.get('/first-name/:firstName', (req, res) => {
+//   Customer.findAll({
+//     where: {
+//       name: req.params.firstName
+//     }
+//   })
+//   .then(customer => {
+//     res.json({ customer })
+//   })
+//   .catch(() => {
+//     res.send('error')
+//   })
+// })
+
 router.post('/new', (req, res) => {
   Customer.create({
     firstName: req.body.firstName,
