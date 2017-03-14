@@ -3,6 +3,16 @@ const router = express.Router()
 const db = require('../models')
 const { Customer } = db
 
+router.get('/', (req, res) => {
+  Customer.findAll()
+  .then(customers => {
+    res.json({ customers })
+  })
+  .catch(() => {
+    res.send('error')
+  })
+})
+
 router.post('/new', (req, res) => {
   Customer.create({
     firstName: req.body.firstName,
